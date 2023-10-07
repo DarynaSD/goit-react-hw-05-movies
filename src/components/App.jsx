@@ -62,10 +62,6 @@ const App = () => {
         <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
-    // <div>
-    //     <div trending={trending}>{trending}</div>;
-    //     <div query={searchQuery}>{searchQuery}</div>;
-    // </div>
   );
 };
 

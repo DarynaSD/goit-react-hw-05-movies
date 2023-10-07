@@ -1,35 +1,25 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom';
 
-const defaultImg =
-  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+import MoviesListItem from './MoviesListItem';
 
-const MoviesList = ({data}) => {
+
+
+const MoviesList = ({ data }) => {
+  // const [searchParams] = useSearchParams();
+  // const query = searchParams.get('serach');
+  // console.log('query :>>', query)
+
   return (
-    <div>
-      <div>Movie List</div>
-      <ul>
-        {data.map(({title, id, poster_path}) => (
-          <li key={id}>
-            <Link to={`movies/${id}`}>
-              <p>{title}</p>
-              <img
-                src={
-                  poster_path
-                    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                    : defaultImg
-                }
-                alt={title}
-                width={250}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {data.map(({ title, id, poster_path }) => (
+        <li key={id}>
+          <MoviesListItem title={title} id={id} poster_path={poster_path} />
+        </li>
+      ))}
+    </ul>
   );
-}
+    }
 
 export default MoviesList
 
