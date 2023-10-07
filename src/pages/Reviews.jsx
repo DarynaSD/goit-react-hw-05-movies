@@ -27,12 +27,21 @@ const Reviews = () => {
     fetch();
   }, [movieId]);
 
-  // console.log(cast);
-
   return (
     <div>
       {isLoading && 'Loading...'}
-      {reviews ? <ReviewsList reviewsData={reviews.results}/> : 'No reviews yet'}
+      {/* {reviews ? (
+        <ReviewsList reviewsData={reviews.results} />
+      ) : (
+        'No reviews yet'
+      )} */}
+
+      {reviews &&
+        (!reviews.results.length ? (
+          'No reviews yet'
+        ) : (
+          <ReviewsList reviewsData={reviews.results} />
+        ))}
     </div>
   );
 };
