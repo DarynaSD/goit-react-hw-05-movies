@@ -2,6 +2,7 @@ import React from 'react'
 
 
 import MoviesListItem from './MoviesListItem';
+import { Item, List } from './Parts.styled';
 
 
 
@@ -11,13 +12,13 @@ const MoviesList = ({ data }) => {
   // console.log('query :>>', query)
 
   return (
-    <ul>
+    <List>
       {data.map(({ title, id, poster_path }) => (
-        <li key={id}>
+        <Item key={id}>
           <MoviesListItem title={title} id={id} poster_path={poster_path} />
-        </li>
+        </Item>
       ))}
-    </ul>
+    </List>
   );
     }
 

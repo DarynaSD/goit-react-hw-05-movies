@@ -5,6 +5,7 @@ import MoviesList from 'components/MoviesList';
 import SearchForm from 'components/SearchForm';
 import { serchMoviesByQuery } from 'api/serchMoviesByQuery';
 import { useSearchParams } from 'react-router-dom';
+import { Movies } from 'components/Parts.styled';
 
 const MoviesPage = () => {
   const [error, setError] = useState('');
@@ -44,14 +45,14 @@ const MoviesPage = () => {
     }, [fetchByQuery]);
 
   return (
-    <div>
+    <Movies>
       <SearchForm submit={submit}></SearchForm>
       {isLoading && 'Loading...'}
       {error && error.message}
       {findedMovies && (!findedMovies.length ? (
 					<h1>No data found</h1>
 				) : <MoviesList data={findedMovies} />)}
-    </div>
+    </Movies>
   );
 };
 

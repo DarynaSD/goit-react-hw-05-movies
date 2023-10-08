@@ -1,4 +1,7 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; bring in normalize.css styles */
+*, ::after, ::before {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -7,9 +10,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: linen;
+  background-color: #495867;
+  
+}
+
+ul, li, h1, h2, h3, Link, NavLink, a, p {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  color: linen;
+}
+
+img {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+a > img {
+transition: transform 250ms linear;
+}
+
+a:is(:hover, :focus) > img {
+  transform: scale(1.03);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* navlink */
+.nav-item {
+  padding: 15px;
+  display: block;
+}
+
+.nav-item::after {
+  content: '';
+  width: 100%;
+  opacity: 0;
+  height: 1px;
+  display: block;
+  background-color: linen;
+  transition: opacity linear 250ms, background-color linear 250ms;
+}
+
+.nav-item:is(:hover, :focus)::after {
+  background-color: grey;
+  opacity: 1;
+}
+
+.nav-item.active::after {
+  background-color: linen;
+      opacity: 1;
 }

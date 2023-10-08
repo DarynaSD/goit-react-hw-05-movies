@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 import { findTrending } from 'api/getTrending';
 import MoviesList from 'components/MoviesList';
+import { Home } from 'components/Parts.styled';
 
 const HomePage = () => {
   const [trending, setTrending] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null);
 //  trending for home
   useEffect( () => {
      const fetch = async () => {
@@ -13,25 +15,22 @@ const HomePage = () => {
          setIsLoading(true)
          const data = await findTrending();
          setTrending(data.results);
-         console.log(data);
-         console.log(data.results);
-         console.log('finding');
        } catch (error) {
-         console.log(error.message);
-         console.log('error');
+         setError(error.message);
        } finally {
          setIsLoading(false);
-         console.log('the end');
+         //console.log('the end');
        }
     };
   fetch();
     }, []);
     
   return (
-    <div>
+    <Home>
       {isLoading && 'Loading...'}
+      {error && <p>{ error}</p>}
       {trending && <MoviesList data={trending} />}
-    </div>
+    </Home>
   );
 }
 

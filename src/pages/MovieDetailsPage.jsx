@@ -9,6 +9,7 @@ import {
 
 import { getDetailsById } from 'api/getDetailsById';
 import SingleMovie from 'components/SingleMovie';
+import { Det } from 'components/Parts.styled';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -44,8 +45,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <p>MovieDetailsPage</p>
+    <Det>
       <button type="button" onClick={handleBackClick}>
         Go back
       </button>
@@ -60,7 +60,7 @@ const MovieDetailsPage = () => {
         Reviews
       </Link>
       <Outlet />
-    </div>
+    </Det>
   );
 };
 
