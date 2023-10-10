@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Link,
+  NavLink,
   Outlet,
   useLocation,
   useNavigate,
@@ -9,11 +9,11 @@ import {
 
 import { getDetailsById } from 'api/getDetailsById';
 import SingleMovie from 'components/SingleMovie';
-import { Det } from 'components/Parts.styled';
+import { Button, Det,  LinkWrap } from 'components/Parts.styled';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  console.log('detailesPage', movieId);
+  //console.log('detailesPage', movieId);
 
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,12 +33,12 @@ const MovieDetailsPage = () => {
         setIsLoading(true);
         const data = await getDetailsById(`${movieId}`);
         setMovie(data);
-        console.log(data);
+        //console.log(data);
       } catch (error) {
         console.log(error.message);
       } finally {
         setIsLoading(false);
-        console.log('the end');
+        //console.log('the end');
       }
     };
     fetch();
@@ -46,20 +46,31 @@ const MovieDetailsPage = () => {
 
   return (
     <Det>
-      <button type="button" onClick={handleBackClick}>
+      <Button type="button" onClick={handleBackClick}>
         Go back
-      </button>
+      </Button>
       <div>
         {isLoading && 'Loading...'}
         {movie && <SingleMovie data={movie} />}
+
+        <LinkWrap>
+          <NavLink
+            className="nav-item det-item"
+            to="cast"
+            state={location.state}
+          >
+            Cast
+          </NavLink>
+          <NavLink
+            className="nav-item det-item"
+            to="reviews"
+            state={location.state}
+          >
+            Reviews
+          </NavLink>
+        </LinkWrap>
+        <Outlet />
       </div>
-      <Link to="cast" state={location.state} >
-        Cast
-      </Link>
-      <Link to="reviews" state={location.state}>
-        Reviews
-      </Link>
-      <Outlet />
     </Det>
   );
 };

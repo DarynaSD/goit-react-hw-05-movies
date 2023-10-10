@@ -8,7 +8,6 @@ const Reviews = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { movieId } = useParams();
-  console.log('cast', movieId);
 
   useEffect(() => {
     const fetch = async () => {
@@ -16,12 +15,10 @@ const Reviews = () => {
         setIsLoading(true);
         const data = await getDetailsById(`${movieId}/reviews`);
         setReviews(data);
-        console.log(data);
       } catch (error) {
         console.log(error.message);
       } finally {
         setIsLoading(false);
-        console.log('the end');
       }
     };
     fetch();
@@ -30,11 +27,6 @@ const Reviews = () => {
   return (
     <div>
       {isLoading && 'Loading...'}
-      {/* {reviews ? (
-        <ReviewsList reviewsData={reviews.results} />
-      ) : (
-        'No reviews yet'
-      )} */}
 
       {reviews &&
         (!reviews.results.length ? (

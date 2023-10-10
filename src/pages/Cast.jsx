@@ -8,7 +8,6 @@ const Cast = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { movieId } = useParams();
-  console.log('cast', movieId);
 
   useEffect(() => {
     const fetch = async () => {
@@ -16,12 +15,9 @@ const Cast = () => {
         setIsLoading(true);
         const data = await getDetailsById(`${movieId}/credits`);
         setCast(data);
-        console.log(data);
       } catch (error) {
-        console.log(error.message);
       } finally {
         setIsLoading(false);
-        console.log('the end');
       }
     };
     fetch();
@@ -32,7 +28,6 @@ const Cast = () => {
   return (
     <div>
       {isLoading && 'Loading...'}
-      <div>cast</div>
       {cast && <CastList castData={ cast.cast} />}
     </div>
   );

@@ -16,7 +16,7 @@ body {
   
 }
 
-ul, li, h1, h2, h3, Link, NavLink, a, p {
+ul, li, h1, h2, h3, h4, Link, NavLink, a, p {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -47,7 +47,7 @@ code {
 }
 
 /* navlink */
-.nav-item {
+.nav-item, .det-item {
   padding: 15px;
   display: block;
 }
@@ -70,4 +70,10 @@ code {
 .nav-item.active::after {
   background-color: linen;
       opacity: 1;
+}
+
+/*  */
+.det-item {
+font-weight: 600;
+font-size: 18px;
 }

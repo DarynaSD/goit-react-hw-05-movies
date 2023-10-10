@@ -1,24 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { InfoWrapper, SingleImg, Wrapper } from './Parts.styled';
 //import { Link } from 'react-router-dom';
 
 const SingleMovie = ({ data }) => {
-    //console.log({ data })
-    const defaultImg =
-        'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
-    const { poster_path, title, vote_average, overview, genres } = data;
-    return (
-      <section>
-        
-        <h1>{title}</h1>
-        <p>User score: {vote_average}</p>
-        <p>{overview}</p>
-            <div>
-                <p>Genres:</p>
-                <ul>
-                    {genres.map(one => (<li key={one.id}>{ one.name}</li>))}
-                </ul>
-                </div>
-        <img
+  //console.log({ data })
+  const defaultImg =
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+  const { poster_path, title, vote_average, overview, genres } = data;
+  return (
+    <InfoWrapper>
+      <div>
+        <SingleImg
           src={
             poster_path
               ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -26,8 +18,23 @@ const SingleMovie = ({ data }) => {
           }
           alt={title}
         />
-      </section>
-    );
-}
+      </div>
 
-export default SingleMovie
+      <Wrapper>
+        <h1>{title}</h1>
+        <h3>User score: {vote_average}</h3>
+        <p>{overview}</p>
+        <div>
+          <h2>Genres:</h2>
+          <ul>
+            {genres.map(one => (
+              <li key={one.id}>{one.name}</li>
+            ))}
+          </ul>
+        </div>
+      </Wrapper>
+    </InfoWrapper>
+  );
+};
+
+export default SingleMovie;
